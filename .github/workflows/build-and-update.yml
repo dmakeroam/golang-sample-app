@@ -27,7 +27,7 @@ jobs:
       - name: Check out GitOps repo
         uses: actions/checkout@v4
         with:
-          repository: <your-org>/myapp-gitops
+          repository: dmakeroam/myapp-gitops
           token: ${{ secrets.GITOPS_REPO_TOKEN }}
           path: gitops
 
