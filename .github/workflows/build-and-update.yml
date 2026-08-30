@@ -24,18 +24,18 @@ jobs:
           push: true
           tags: ${{ secrets.REGISTRY_LOGIN_SERVER }}/myapp:${{ github.sha }}
 
-      # - name: Check out GitOps repo
-      #   uses: actions/checkout@v4
-      #   with:
-      #     repository: <your-org>/myapp-gitops
-      #     token: ${{ secrets.GITOPS_REPO_TOKEN }}
-      #     path: gitops
+      - name: Check out GitOps repo
+        uses: actions/checkout@v4
+        with:
+          repository: <your-org>/myapp-gitops
+          token: ${{ secrets.GITOPS_REPO_TOKEN }}
+          path: gitops
 
-      # - name: Update image tag and commit
-      #   working-directory: gitops/apps/myapp
-      #   run: |
-      #     kustomize edit set image myapp=${{ secrets.REGISTRY_LOGIN_SERVER }}/myapp:${{ github.sha }}
-      #     git config user.name  "CI Bot"
-      #     git config user.email "ci@example.com"
-      #     git commit -am "Deploy myapp:${{ github.sha }}"
-      #     git push
+      - name: Update image tag and commit
+        working-directory: gitops/apps/myapp
+        run: |
+          kustomize edit set image myapp=${{ secrets.REGISTRY_LOGIN_SERVER }}/myapp:${{ github.sha }}
+          git config user.name  "CI Bot"
+          git config user.email "ci@example.com"
+          git commit -am "Deploy myapp:${{ github.sha }}"
+          git push
