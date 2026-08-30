@@ -34,7 +34,7 @@ jobs:
       - name: Update image tag and commit
         working-directory: gitops/apps/myapp
         run: |
-          kustomize edit set image myapp=${{ secrets.REGISTRY_LOGIN_SERVER }}/myapp:${{ github.sha }}
+          kustomize edit set image export ARGOCD_VERSION=v3.0.0myapp=${{ secrets.REGISTRY_LOGIN_SERVER }}/myapp:${{ github.sha }}
           git config user.name  "CI Bot"
           git config user.email "ci@example.com"
           git commit -am "Deploy myapp:${{ github.sha }}"
